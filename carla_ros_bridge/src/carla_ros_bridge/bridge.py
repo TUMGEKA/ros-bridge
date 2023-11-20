@@ -389,6 +389,7 @@ def main(args=None):
 
     parameters['host'] = carla_bridge.get_param('host', 'localhost')
     parameters['port'] = carla_bridge.get_param('port', 2000)
+    parameters['tm_port'] = carla_bridge.get_param('port', 8000)
     parameters['timeout'] = carla_bridge.get_param('timeout', 2)
     parameters['passive'] = carla_bridge.get_param('passive', False)
     parameters['synchronous_mode'] = carla_bridge.get_param('synchronous_mode', True)
@@ -426,6 +427,9 @@ def main(args=None):
                         carla_client.get_server_version()))
 
         carla_world = carla_client.get_world()
+        traffic_manager = client.get_trafficmanager(parameters['tm_port'])
+        traffic_manager.set_global_distance_to_leading_vehicle(2.5)
+        traffic_manager.set_synchronous_mode(True)
 
         if "town" in parameters and not parameters['passive']:
             if parameters["town"].endswith(".xodr"):

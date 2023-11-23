@@ -430,7 +430,7 @@ def main(args=None):
         carla_world = carla_client.get_world()
         if(parameters['traffic_manager']):
             carla_bridge.loginfo("Trying to create a Traffic Manager server in {tm_port} with synchronous mode set to: {synchronous_mode}".format(
-                port=parameters['tm_port'], synchronous_mode=parameters['synchronous_mode']
+                tm_port=parameters['tm_port'], synchronous_mode=parameters['synchronous_mode']
             ))       
             traffic_manager = carla_client.get_trafficmanager(parameters['tm_port'])
             traffic_manager.set_global_distance_to_leading_vehicle(2.5)

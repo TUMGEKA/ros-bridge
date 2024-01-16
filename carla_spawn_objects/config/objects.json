@@ -128,12 +128,12 @@
                 },
                 {
                     "type": "sensor.other.collision",
-                    "id": "obstacle",
+                    "id": "collision",
                     "spawn_point": {"x": 0.0, "y": 0.0, "z": 0.0}
                 },
                 {
                     "type": "sensor.other.obstacle",
-                    "id": "collision",
+                    "id": "obstacle",
                     "spawn_point": {"x": 0.0, "y": 0.0, "z": 0.0}
                 },
                 {

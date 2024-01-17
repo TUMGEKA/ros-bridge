@@ -70,7 +70,7 @@ class ObstacleSensor(Sensor):
         collision_msg.header = self.get_msg_header(timestamp=collision_event.timestamp)
         collision_msg.other_actor_id = collision_event.other_actor.id
         collision_msg.normal_impulse.x = collision_event.distance
-        collision_msg.normal_impulse.y = -1
-        collision_msg.normal_impulse.z = -1
+        collision_msg.normal_impulse.y = 0.0
+        collision_msg.normal_impulse.z = 0.0
 
         self.obstacle_publisher.publish(collision_msg)

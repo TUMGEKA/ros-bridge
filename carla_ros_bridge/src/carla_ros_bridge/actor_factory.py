@@ -81,6 +81,10 @@ class ActorFactory(object):
 
         self.thread = Thread(target=self._update_thread)
 
+        # save a dict to match the frame_id to the right sensor
+        # {uid:frame_id}
+        self._frame_id_map = {}
+
     def start(self):
         # create initially existing actors
         self.update_available_objects()
@@ -171,6 +175,8 @@ class ActorFactory(object):
                 id_ = self._spawn_carla_actor(req)
                 self._task_queue.put((ActorFactory.TaskType.SPAWN_ACTOR, (id_, req)))
             self._known_actor_ids.append(id_)
+        
+        self._frame_id_map.update({id_:req.frame_id})
         return id_
 
     def destroy_actor(self, uid):
@@ -387,7 +393,7 @@ class ActorFactory(object):
             elif carla_actor.type_id.startswith("sensor.lidar"):
                 if carla_actor.type_id.endswith("sensor.lidar.ray_cast"):
                     actor = Lidar(uid, name, parent, spawn_pose, self.node,
-                                  carla_actor, self.sync_mode)
+                                  carla_actor, self.sync_mode, self._frame_id_map[uid])
                 elif carla_actor.type_id.endswith(
                         "sensor.lidar.ray_cast_semantic"):
                     actor = SemanticLidar(uid, name, parent, spawn_pose,

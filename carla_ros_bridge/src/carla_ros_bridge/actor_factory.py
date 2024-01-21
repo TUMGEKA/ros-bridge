@@ -407,7 +407,7 @@ class ActorFactory(object):
                              carla_actor, self.sync_mode)
             elif carla_actor.type_id.startswith("sensor.other.imu"):
                 actor = ImuSensor(uid, name, parent, spawn_pose, self.node,
-                                  carla_actor, self.sync_mode)
+                                  carla_actor, self.sync_mode, self._frame_id_map[uid])
             elif carla_actor.type_id.startswith("sensor.other.collision"):
                 actor = CollisionSensor(uid, name, parent, spawn_pose,
                                         self.node, carla_actor, self.sync_mode)

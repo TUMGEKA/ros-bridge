@@ -1,4 +1,4 @@
 [submodule "carla_msgs"]
 	path = carla_msgs
-	url = https://github.com/Robotics010/ros-carla-msgs
+	url = https://github.com/TUMGEKA/ros-carla-msgs
 	branch = master

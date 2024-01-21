@@ -374,7 +374,7 @@ class ActorFactory(object):
             if carla_actor.type_id.startswith("sensor.camera"):
                 if carla_actor.type_id.startswith("sensor.camera.rgb"):
                     actor = RgbCamera(uid, name, parent, spawn_pose, self.node,
-                                      carla_actor, self.sync_mode)
+                                      carla_actor, self.sync_mode, self._frame_id_map[uid])
                 elif carla_actor.type_id.startswith("sensor.camera.depth"):
                     actor = DepthCamera(uid, name, parent, spawn_pose,
                                         self.node, carla_actor, self.sync_mode)
